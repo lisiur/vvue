@@ -1,19 +1,16 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <hello></hello>
+      <slider width="650px" height="400px" auto :source="sliderSource"></slider>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
-
-export default {
-  name: 'app',
-  components: {
-    Hello
-  }
-}
+    import images from '@/assets'
+    export default {
+      data: () => ({
+        sliderSource: images.map(item => ({src: item})),
+      })
+    }
 </script>
 
 <style>
