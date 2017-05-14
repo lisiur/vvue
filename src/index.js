@@ -1,12 +1,15 @@
 import './assets/css/init.min.css'
 import './assets/css/font-awesome.min.css'
-import Slider from './components/slider/slider.vue'
+
+import Slider from './components/slider'
+import Sync from './components/sync'
+
 const vvue = {
-  Slider
+  Slider,
+  Sync
 }
 const install = function (Vue, opts = {}) {
   Object.keys(vvue).forEach((key) => {
-    console.log(key, vvue[key])
     Vue.component(key, vvue[key]);
   });
 };

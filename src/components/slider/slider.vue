@@ -80,11 +80,11 @@
     props: {
       width: {
         type: String,
-        default: '300px'
+        default: 'auto'
       },
       height: {
         type: String,
-        default: '200px'
+        default: 'auto'
       },
       source: {
         type: Array,

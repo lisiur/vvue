@@ -10,6 +10,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "ramda": "^0.23.0",
     "vue": "^2.2.6"
   },
   "devDependencies": {
