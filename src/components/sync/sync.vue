@@ -38,6 +38,7 @@
         },
         sync() {
           this.state('loading')
+          if (this.promise === null) return
           this.promise.then(res => {
             this.state('done')
           }).catch(ex => {
@@ -50,7 +51,7 @@
           this.sync()
         }
       },
-      created() {
+      mounted() {
         this.sync()
       },
       props: {
