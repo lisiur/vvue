@@ -1,5 +1,6 @@
 import './assets/css/init.min.css'
 import './assets/css/font-awesome.min.css'
+import './styles/index.scss'
 
 import Slider from './components/slider'
 import Sync from './components/sync'

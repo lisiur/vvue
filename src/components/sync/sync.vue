@@ -15,6 +15,13 @@
 </template>
 <script>
     export default {
+      name: 'sync',
+      props: {
+        promise: {
+          type: Promise,
+          default: null
+        },
+      },
       data: () => ({
         pending: true,
         loading: false,
@@ -53,25 +60,6 @@
       },
       mounted() {
         this.sync()
-      },
-      props: {
-        promise: {
-          type: Promise,
-          default: null
-        },
-
       }
     }
 </script>
-<style lang="scss" scoped>
-    .classes {
-        position: relative;
-        .loading {
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
-        }
-    }
-</style>
