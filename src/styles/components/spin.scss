@@ -1,6 +1,6 @@
 $prefix: vvue-spin;
 .#{$prefix} {
-  display: flex;
+  display: inline-block;
   .#{$prefix}-default {
     display: flex;
     justify-content: center;
