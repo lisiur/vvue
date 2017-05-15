@@ -1,7 +1,10 @@
 <template>
   <div id="app">
-      <Slider width="650px" height="400px" auto :source="sliderSource"></Slider>
-      <Sync class="sync" ref="sync" :promise="promise">
+      <h2>slider</h2>
+      <v-slider width="650px" height="400px" auto :source="sliderSource"></v-slider>
+
+      <h2>sync</h2>
+      <v-sync class="sync" ref="sync" :promise="promise">
           <div slot="loading">
               loading
           </div>
@@ -11,8 +14,24 @@
           <div slot="fail">
               {{ response }}
           </div>
-      </Sync>
+      </v-sync>
       <button @click="sync">sync</button>
+
+      <h2>pretty-scroll</h2>
+      <v-pretty-scroll class="pretty-scroll" width="30px" height="100px">
+          <ul>
+              <li>test</li>
+              <li>test</li>
+              <li>test</li>
+              <li>test</li>
+              <li>test</li>
+              <li>test</li>
+              <li>test</li>
+              <li>test</li>
+              <li>test</li>
+              <li>test</li>
+          </ul>
+      </v-pretty-scroll>
   </div>
 </template>
 
@@ -49,5 +68,8 @@
         width: 300px;
         min-height: 200px;
         background: red;
+    }
+    .pretty-scroll {
+        background: royalblue;
     }
 </style>

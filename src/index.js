@@ -4,10 +4,12 @@ import './styles/index.scss'
 
 import vSlider from './components/slider'
 import vSync from './components/sync'
+import vPrettyScroll from './components/pretty-scroll'
 
 const vvue = {
   vSlider,
-  vSync
+  vSync,
+  vPrettyScroll
 }
 const install = function (Vue, opts = {}) {
   Object.keys(vvue).forEach((key) => {

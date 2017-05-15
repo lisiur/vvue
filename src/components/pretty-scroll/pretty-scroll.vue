@@ -1,0 +1,54 @@
+<template>
+    <div :class="[prefixClz, `${prefixClz}-outer-wrapper`]" :style="{width: width, height: height}">
+        <div ref="inner" :class="[`${prefixClz}-inner-wrapper`]" :style="{width: innerWidth, height: innerHeight}">
+            <slot></slot>
+        </div>
+    </div>
+</template>
+
+<script type="text/ecmascript-6">
+    const prefixClz = 'vvue-pretty-scroll'
+  export default {
+    data: () => ({
+      prefixClz: prefixClz,
+    }),
+    computed: {
+      innerWidth() {
+        return `calc(${this.width} + 20px)`
+      },
+      innerHeight() {
+        return `calc(${this.height} + 20px)`
+      }
+    },
+    methods: {
+      innerDom() {
+        return this.$refs.inner
+      }
+    },
+    props: {
+      width: {
+        type: String,
+        default: '200px',
+      },
+      height: {
+        type: String,
+        default: '100vh',
+      }
+    }
+  }
+</script>
+
+<style lang="scss" scoped>
+    $prefix: vvue-pretty-scroll;
+
+    .#{$prefix}-outer-wrapper {
+        overflow: hidden;
+        .#{$prefix}-inner-wrapper {
+            box-sizing: border-box;
+            padding-right: 20px;
+            padding-bottom: 20px;
+            overflow-y: scroll;
+            overflow-x: auto;
+        }
+    }
+</style>
