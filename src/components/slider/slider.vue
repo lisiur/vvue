@@ -2,14 +2,19 @@
     <div :class="[prefixClz]">
         <div :class="[`${prefixClz}-wrapper`]" :style="{width: width, height: height}">
             <ul ref="sourceList" :class="[`${prefixClz}-list`]">
-                <li :class="[`${prefixClz}-item`]" v-for="item in source">
-                    <img :src="item.src" alt="image">
-                </li>
+                <template v-if="source && source.length !== 0">
+                    <li :class="[`${prefixClz}-item`]" v-for="item in source">
+                        <img :src="item.src" alt="image">
+                    </li>
+                </template>
+                <template v-else>
+                    <slot></slot>
+                </template>
             </ul>
             <div :class="[`${prefixClz}-indicator-wrapper`]">
                 <ul :class="[`${prefixClz}-indicator-list`]">
-                    <template v-for="(item, id) in source">
-                        <li :class="[`${prefixClz}-indicator-item`, index === id ? `${prefixClz}-indicator-active` : '']"
+                    <template v-for="id in items.length">
+                        <li :class="[`${prefixClz}-indicator-item`, index === (id - 1) ? `${prefixClz}-indicator-active` : '']"
                             @mouseover="filterTrigger('hover', id)"
                             @click="filterTrigger('click', id)">
                         </li>
@@ -62,7 +67,7 @@
     },
     data: () => ({
       prefixClz: prefixClz,
-      timeout: null,
+      timer: null,
       items: [],
       index: 0,
     }),
@@ -95,7 +100,7 @@
         this.jump(this.index + 1)
       },
       jump(index) {
-        clearTimeout(this.timeout)
+        clearTimeout(this.timer)
 
         let prevIndex = this.index
         let len = this.items.length
@@ -107,7 +112,7 @@
         this.items[this.index].style.opacity= 1
 
         if (this.auto) {
-          this.timeout = setTimeout(() => {
+          this.timer = setTimeout(() => {
             this.jump(index+1)
           }, this.speed)
         }
@@ -118,7 +123,7 @@
       this.jump(0)
     },
     destroy() {
-      clearInterval(this.timeout)
+      clearInterval(this.timer)
     }
   }
 </script>

@@ -8,6 +8,7 @@ import vPrettyScroll from './components/pretty-scroll'
 
 const vvue = {
   vSlider,
+  vSliderItem: vSlider.Item,
   vSync,
   vPrettyScroll
 }

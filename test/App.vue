@@ -1,7 +1,11 @@
 <template>
   <div id="app">
       <h2>slider</h2>
-      <v-slider width="650px" height="400px" auto :source="sliderSource"></v-slider>
+      <v-slider width="650px" height="400px" auto :source="sliderSource">
+          <v-slider-item>1</v-slider-item>
+          <v-slider-item>2</v-slider-item>
+          <v-slider-item>3</v-slider-item>
+      </v-slider>
 
       <h2>sync</h2>
       <v-sync class="sync" ref="sync" :promise="promise">
@@ -37,7 +41,6 @@
 
 <script>
     import images from '@/assets'
-    import R from 'ramda'
     export default {
       data: () => ({
         sliderSource: images.map(item => ({src: item})),
