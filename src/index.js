@@ -2,12 +2,12 @@ import './assets/css/init.min.css'
 import './assets/css/font-awesome.min.css'
 import './styles/index.scss'
 
-import Slider from './components/slider'
-import Sync from './components/sync'
+import vSlider from './components/slider'
+import vSync from './components/sync'
 
 const vvue = {
-  Slider,
-  Sync
+  vSlider,
+  vSync
 }
 const install = function (Vue, opts = {}) {
   Object.keys(vvue).forEach((key) => {
