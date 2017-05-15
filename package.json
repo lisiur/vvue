@@ -49,6 +49,10 @@
     "webpack-hot-middleware": "^2.18.0",
     "webpack-merge": "^4.1.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lisiur/vvue.git"
+  },
   "engines": {
     "node": ">= 4.0.0",
     "npm": ">= 3.0.0"
