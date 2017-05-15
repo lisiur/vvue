@@ -1,5 +1,10 @@
 <template>
   <div id="app">
+      <h2>spin</h2>
+      <v-spin size="40">
+          <v-spin-type-default></v-spin-type-default>
+      </v-spin>
+
       <h2>slider</h2>
       <v-slider width="650px" height="400px" auto trigger="hover" :source="sliderSource">
           <v-slider-item>1</v-slider-item>

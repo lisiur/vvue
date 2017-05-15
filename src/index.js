@@ -5,12 +5,16 @@ import './styles/index.scss'
 import vSlider from './components/slider'
 import vSync from './components/sync'
 import vPrettyScroll from './components/pretty-scroll'
+import vSpin from './components/spin'
 
 const vvue = {
   vSlider,
   vSliderItem: vSlider.Item,
   vSync,
-  vPrettyScroll
+  vPrettyScroll,
+  vSpin,
+  vSpinTypeDefault: vSpin.Default,
+  vSpinTypeCircle: vSpin.Circle
 }
 const install = function (Vue, opts = {}) {
   Object.keys(vvue).forEach((key) => {

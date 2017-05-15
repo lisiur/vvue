@@ -1,10 +1,13 @@
-.vvue-slider {
-  .vvue-slider-wrapper {
+$prefix: vvue-slider;
+.#{$prefix} {
+  .#{$prefix}-wrapper {
     position: relative;
-    .vvue-slider-list {
+
+    /** main content */
+    .#{$prefix}-list {
       width: 100%;
       height: 100%;
-      .vvue-slider-item {
+      .#{$prefix}-item {
         width: 100%;
         height: 100%;
         opacity: 0;
@@ -17,7 +20,9 @@
         }
       }
     }
-    .vvue-slider-indicator-wrapper {
+
+    /** indicator */
+    .#{$prefix}-indicator-wrapper {
       position: absolute;
       z-index: 2;
       bottom: 10px;
@@ -26,26 +31,28 @@
       right: 0;
       display: flex;
       justify-content: center;
-      .vvue-slider-indicator-list {
+      .#{$prefix}-indicator-list {
         display: flex;
         justify-content: center;
         padding: 2px 5px;
         background: rgba(255, 255, 255, .3);
         border-radius: 10px;
-        .vvue-slider-indicator-item {
+        .#{$prefix}-indicator-item {
           width: 10px;
           height: 10px;
           background: white;
           border-radius: 50%;
           margin: 0 5px;
           cursor: pointer;
-          &.vvue-slider-indicator-active {
+          &.#{$prefix}-indicator-active {
             background: #3399FF;
           }
         }
       }
     }
-    .vvue-slider-arrow {
+
+    /** arrow */
+    .#{$prefix}-arrow {
       position: absolute;
       width: 46px;
       height: 46px;
@@ -66,13 +73,13 @@
       }
       &:hover {
       }
-      &.vvue-slider-arrow-left {
+      &.#{$prefix}-arrow-left {
         left: 5px;
         i {
           margin-left: -4px;
         }
       }
-      &.vvue-slider-arrow-right {
+      &.#{$prefix}-arrow-right {
         right: 5px;
         i {
           margin-right: -4px;
@@ -81,15 +88,16 @@
     }
   }
 
-  .vvue-slider-wrapper {
-    .vvue-slider-arrow-always, &:hover .vvue-slider-arrow-hover {
+  /** hover animation */
+  .#{$prefix}-wrapper {
+    .#{$prefix}-arrow-always, &:hover .#{$prefix}-arrow-hover {
       opacity: 0.5;
     }
-    .vvue-slider-arrow-never {
+    .#{$prefix}-arrow-never {
       display: none;
       opacity: 0;
     }
-    .vvue-slider-arrow-hover, .vvue-slider-arrow-always {
+    .#{$prefix}-arrow-hover, .#{$prefix}-arrow-always {
       &:hover {
         opacity: 0.8;
       }
