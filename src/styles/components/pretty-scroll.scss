@@ -1,0 +1,12 @@
+$prefix: vvue-pretty-scroll;
+
+.#{$prefix}-outer-wrapper {
+  overflow: hidden;
+  .#{$prefix}-inner-wrapper {
+    box-sizing: border-box;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    overflow-y: scroll;
+    overflow-x: auto;
+  }
+}

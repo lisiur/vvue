@@ -3,8 +3,8 @@
         <div :class="[`${prefixClz}-wrapper`]" :style="{width: width, height: height}">
             <ul ref="sourceList" :class="[`${prefixClz}-list`]">
                 <template v-if="source && source.length !== 0">
-                    <li :class="[`${prefixClz}-item`]" v-for="item in source">
-                        <img :src="item.src" alt="image">
+                    <li :class="[`${prefixClz}-item`]" v-for="src in source">
+                        <img :src="src" alt="image">
                     </li>
                 </template>
                 <template v-else>

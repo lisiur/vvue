@@ -28,27 +28,12 @@
     props: {
       width: {
         type: String,
-        default: '200px',
+        default: 'auto',
       },
       height: {
         type: String,
-        default: '100vh',
+        default: 'auto',
       }
     }
   }
 </script>
-
-<style lang="scss" scoped>
-    $prefix: vvue-pretty-scroll;
-
-    .#{$prefix}-outer-wrapper {
-        overflow: hidden;
-        .#{$prefix}-inner-wrapper {
-            box-sizing: border-box;
-            padding-right: 20px;
-            padding-bottom: 20px;
-            overflow-y: scroll;
-            overflow-x: auto;
-        }
-    }
-</style>

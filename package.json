@@ -61,5 +61,6 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "homepage": "https://lisiurday.gitbooks.io/vvue/content/"
 }

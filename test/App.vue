@@ -48,7 +48,7 @@
     import images from '@/assets'
     export default {
       data: () => ({
-        sliderSource: images.map(item => ({src: item})),
+        sliderSource: images,
         response: null,
         promise: null,
       }),
