@@ -15,8 +15,8 @@
                 <ul :class="[`${prefixClz}-indicator-list`]">
                     <template v-for="id in items.length">
                         <li :class="[`${prefixClz}-indicator-item`, index === (id - 1) ? `${prefixClz}-indicator-active` : '']"
-                            @mouseover="filterTrigger('hover', id)"
-                            @click="filterTrigger('click', id)">
+                            @mouseover="filterTrigger('hover', id - 1)"
+                            @click="filterTrigger('click', id - 1)">
                         </li>
                     </template>
                 </ul>
