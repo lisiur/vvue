@@ -123,7 +123,7 @@
       this.jump(0)
     },
     destroy() {
-      clearInterval(this.timer)
+      clearTimeout(this.timer)
     }
   }
 </script>

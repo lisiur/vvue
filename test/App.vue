@@ -1,16 +1,16 @@
 <template>
   <div id="app">
+      <h2>shake</h2>
+      <v-shake ref="shake" :customConfig="shakeConfig" :times="1">
+          <v-spin size="40"></v-spin>
+      </v-shake>
+      <button @click="shake">shake it</button>
+
       <h2>spin</h2>
-      <v-spin size="40">
-          <v-spin-type-default></v-spin-type-default>
-      </v-spin>
+      <v-spin size="40"></v-spin>
 
       <h2>slider</h2>
-      <v-slider width="650px" height="400px" auto trigger="hover" :source="sliderSource">
-          <v-slider-item>1</v-slider-item>
-          <v-slider-item>2</v-slider-item>
-          <v-slider-item>3</v-slider-item>
-      </v-slider>
+      <v-slider width="650px" height="400px" auto trigger="hover" :source="sliderSource"> </v-slider>
 
       <h2>sync</h2>
       <v-sync class="sync" ref="sync" :promise="promise">
@@ -51,6 +51,7 @@
         sliderSource: images,
         response: null,
         promise: null,
+        shakeConfig: []
       }),
       methods: {
         getData(url) {
@@ -64,9 +65,21 @@
         sync() {
           this.getData('next')
         },
+        shake() {
+          this.$refs.shake.shake()
+        }
       },
       created() {
         this.getData('first')
+        let shakeConfig = []
+        let interval = 5
+        for (let i = 1; i <= 20; ++i) {
+          shakeConfig.push([i, Math.sqrt(100-(i-10)*(i-10)), interval])
+        }
+        for (let i= 19; i >= 0; --i) {
+          shakeConfig.push([i, -Math.sqrt(100-(i-10)*(i-10)), interval])
+        }
+        this.shakeConfig = shakeConfig
       }
     }
 </script>
