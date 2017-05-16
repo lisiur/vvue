@@ -1,7 +1,7 @@
 <template>
   <div id="app">
       <h2>shake</h2>
-      <v-shake ref="shake" :customConfig="shakeConfig" :times="1">
+      <v-shake ref="shake" :customConfig="shakeConfig" :times="5" @on-done="shakeDone">
           <v-spin size="40"></v-spin>
       </v-shake>
       <button @click="shake">shake it</button>
@@ -66,7 +66,10 @@
           this.getData('next')
         },
         shake() {
-          this.$refs.shake.shake()
+          this.$refs.shake.shake({type: 'h', times: 10, amplitude: 100})
+        },
+        shakeDone() {
+          console.log('done')
         }
       },
       created() {
