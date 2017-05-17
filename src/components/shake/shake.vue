@@ -61,6 +61,10 @@
         type: Number,
         default: 3
       },
+      infinity: {
+        type: Boolean,
+        default: false
+      },
       customConfig: {
         type: Array,
         default: () => []
@@ -81,37 +85,43 @@
       }
     },
     methods: {
-      _shakeSteps(lastInterval=0) {
+      _shakeSteps(infinity, lastInterval=0) {
         if (this.stepsQueue.length > 0) {
           const currentStep = this.stepsQueue.shift()
+          if(infinity) this.stepsQueue.push(currentStep)
           const self = this
           setTimeout(() => {
             _move(self.wrapper, currentStep.x, currentStep.y, (currentStep.interval/1000) + 's')
-            self._shakeSteps(currentStep.interval)
+            self._shakeSteps(infinity, currentStep.interval)
           }, lastInterval)
         } else {
           this.$emit('on-done')
         }
       },
-      _shakeIt(config, times) {
+      _shakeIt(config, infinity, times) {
         this.stopShake()
-        this.stepsQueue = _constructSteps(config, times)
-        this._shakeSteps()
+        if (infinity) {
+          this.stepsQueue = _constructSteps(config, 1)
+          this._shakeSteps(true)
+        } else {
+          this.stepsQueue = _constructSteps(config, times)
+          this._shakeSteps()
+        }
       },
       shake(config) {
-        const onceShakeType = config && config.type
+        const shakeType = config && config.type || this.shakeType
         const amplitude = config && config.amplitude || this.amplitude
         const interval = config && config.interval || this.interval
         const times = config && config.times || this.times
+        const infinity = config && config.infinity || this.infinity
         const customConfig = config && config.customConfig || this.customConfig
-        const shakeType = onceShakeType || this.shakeType
 
         if (shakeType === '__custom__') {
-          this._shakeIt(customConfig, times)
+          this._shakeIt(customConfig, infinity, times)
         } else if (shakeType === 'horizontal' || shakeType === 'h') {
-          this._shakeIt(_horizontalStepsConfig(amplitude, interval), times)
+          this._shakeIt(_horizontalStepsConfig(amplitude, interval), infinity, times)
         } else if (shakeType === 'vertical' || shakeType === 'v') {
-          return this._shakeIt(_verticalStepsConfig(amplitude, interval), times)
+          return this._shakeIt(_verticalStepsConfig(amplitude, interval), infinity, times)
         } else {
           console.error('No shake type for' + type)
         }

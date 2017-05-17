@@ -66,7 +66,7 @@
           this.getData('next')
         },
         shake() {
-          this.$refs.shake.shake({type: 'h', times: 10, amplitude: 100})
+          this.$refs.shake.shake({times: 5})
         },
         shakeDone() {
           console.log('done')
