@@ -12,7 +12,7 @@
                 </pretty-scroll>
                 <pretty-scroll>
                     <main :class="[`${prefixClz}-main`]">
-                        <slot name="main"></slot>
+                        <slot></slot>
                     </main>
                 </pretty-scroll>
                 <pretty-scroll>
@@ -26,7 +26,7 @@
                     <slot name="left"></slot>
                 </nav>
                 <main :class="[`${prefixClz}-main`]">
-                    <slot name="main"></slot>
+                    <slot></slot>
                 </main>
                 <aside :class="[`${prefixClz}-right`]">
                     <slot name="right"></slot>

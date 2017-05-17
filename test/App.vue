@@ -13,7 +13,12 @@
                   <li><a href="#pretty-scroll">pretty-scroll</a></li>
               </ul>
           </nav>
-          <v-pretty-scroll class="main" slot="main">
+          <aside slot="right">
+          </aside>
+          <footer slot="footer">
+              &copy; LisiurDay
+          </footer>
+          <v-pretty-scroll class="main">
               <div id="layout">
                   <v-layout type="add-on">
                       <button slot="pre">pre</button>
@@ -69,11 +74,6 @@
                   </v-pretty-scroll>
               </div>
           </v-pretty-scroll>
-          <aside slot="right">
-          </aside>
-          <footer slot="footer">
-              &copy; LisiurDay
-          </footer>
       </v-layout>
 </template>
 

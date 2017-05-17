@@ -1,10 +1,11 @@
 <template>
     <div :is="type">
+        <!-- public -->
+        <slot></slot>
+
+        <!-- holy-grail -->
         <template slot="header">
             <slot name="header"></slot>
-        </template>
-        <template slot="main">
-            <slot name="main"></slot>
         </template>
         <template slot="left">
             <slot name="left"></slot>
@@ -15,13 +16,14 @@
         <template slot="footer">
             <slot name="footer"></slot>
         </template>
+
+        <!-- add-on -->
         <template slot="pre">
             <slot name="pre"></slot>
         </template>
         <template slot="after">
             <slot name="after"></slot>
         </template>
-        <slot></slot>
     </div>
 </template>
 <script>
