@@ -1,0 +1,16 @@
+$prefix: 'vvue-layout-type-holy-grail';
+.#{$prefix} {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  .#{$prefix}-body{
+    flex: 1;
+    display: flex;
+    .#{$prefix}-main{
+      flex: 1;
+    }
+    .#{$prefix}-left, .#{$prefix}-right {
+      flex: 0 0 auto;
+    }
+  }
+}

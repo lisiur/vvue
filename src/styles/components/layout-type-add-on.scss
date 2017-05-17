@@ -1,0 +1,7 @@
+$prefix: 'vvue-layout-type-add-on';
+.#{$prefix} {
+  display: flex;
+  .#{$prefix}-main {
+    flex: 1;
+  }
+}

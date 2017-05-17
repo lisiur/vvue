@@ -1,47 +1,80 @@
 <template>
-  <div id="app">
-      <h2>shake</h2>
-      <v-shake ref="shake" :customConfig="shakeConfig" :times="5" @on-done="shakeDone">
-          <v-spin size="40"></v-spin>
-      </v-shake>
-      <button @click="shake">shake it</button>
-
-      <h2>spin</h2>
-      <v-spin size="40"></v-spin>
-
-      <h2>slider</h2>
-      <v-slider width="650px" height="400px" auto trigger="hover" :source="sliderSource"> </v-slider>
-
-      <h2>sync</h2>
-      <v-sync class="sync" ref="sync" :promise="promise">
-          <div slot="loading">
-              loading
-          </div>
-          <div slot="done">
-              {{ response }}
-          </div>
-          <div slot="fail">
-              {{ response }}
-          </div>
-      </v-sync>
-      <button @click="sync">sync</button>
-
-      <h2>pretty-scroll</h2>
-      <v-pretty-scroll class="pretty-scroll" width="30px" height="100px">
-          <ul>
-              <li>test</li>
-              <li>test</li>
-              <li>test</li>
-              <li>test</li>
-              <li>test</li>
-              <li>test</li>
-              <li>test</li>
-              <li>test</li>
-              <li>test</li>
-              <li>test</li>
-          </ul>
-      </v-pretty-scroll>
-  </div>
+      <v-layout id="app">
+          <header slot="header">
+              header
+          </header>
+          <nav slot="left">
+              <ul>
+                  <li><a href="#layout">layout</a></li>
+                  <li><a href="#shake">shake</a></li>
+                  <li><a href="#spin">spin</a></li>
+                  <li><a href="#slider">slider</a></li>
+                  <li><a href="#sync">sync</a></li>
+                  <li><a href="#pretty-scroll">pretty-scroll</a></li>
+              </ul>
+          </nav>
+          <v-pretty-scroll class="main" slot="main">
+              <div id="layout">
+                  <v-layout type="add-on">
+                      <button slot="pre">pre</button>
+                      <input type="text">
+                      <button slot="after">after</button>
+                  </v-layout>
+              </div>
+              <div id="shake">
+                  <h1>shake</h1>
+                  <v-shake ref="shake" :customConfig="shakeConfig" :times="5" @on-done="shakeDone">
+                      <v-spin size="40"></v-spin>
+                  </v-shake>
+                  <button @click="shake">shake it</button>
+              </div>
+              <div id="spin">
+                  <h1>spin</h1>
+                  <v-spin size="40"></v-spin>
+              </div>
+              <div id="slider">
+                  <h1>slider</h1>
+                  <v-slider width="650px" height="400px" auto trigger="hover" :source="sliderSource"> </v-slider>
+              </div>
+              <div id="sync">
+                  <h1>sync</h1>
+                  <v-sync class="sync" ref="sync" :promise="promise">
+                      <div slot="loading">
+                          loading
+                      </div>
+                      <div slot="done">
+                          {{ response }}
+                      </div>
+                      <div slot="fail">
+                          {{ response }}
+                      </div>
+                  </v-sync>
+                  <button @click="sync">sync</button>
+              </div>
+              <div id="pretty-scroll">
+                  <h1>pretty-scroll</h1>
+                  <v-pretty-scroll class="pretty-scroll" width="30px" height="100px">
+                      <ul>
+                          <li>test</li>
+                          <li>test</li>
+                          <li>test</li>
+                          <li>test</li>
+                          <li>test</li>
+                          <li>test</li>
+                          <li>test</li>
+                          <li>test</li>
+                          <li>test</li>
+                          <li>test</li>
+                      </ul>
+                  </v-pretty-scroll>
+              </div>
+          </v-pretty-scroll>
+          <aside slot="right">
+          </aside>
+          <footer slot="footer">
+              &copy; LisiurDay
+          </footer>
+      </v-layout>
 </template>
 
 <script>
@@ -87,7 +120,12 @@
     }
 </script>
 
-<style>
+<style lang="scss">
+    .main {
+        h1 {
+            font-size: 1.6rem;
+        }
+    }
     .sync {
         width: 300px;
         min-height: 200px;

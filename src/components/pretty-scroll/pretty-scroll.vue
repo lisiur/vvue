@@ -7,8 +7,9 @@
 </template>
 
 <script type="text/ecmascript-6">
-    const prefixClz = 'vvue-pretty-scroll'
+  const prefixClz = 'vvue-pretty-scroll'
   export default {
+    name: 'prettyScroll',
     data: () => ({
       prefixClz: prefixClz,
     }),
@@ -28,11 +29,11 @@
     props: {
       width: {
         type: String,
-        default: 'auto',
+        default: '100%',
       },
       height: {
         type: String,
-        default: 'auto',
+        default: '100%',
       }
     }
   }
