@@ -6,7 +6,7 @@
         <div :class="[`${prefixClz}-body`, bodyClz]">
             <div ref="leftWrapper" :class="[`${prefixClz}-left`]" :style="{'flex-basis': leftWidth}" v-if="$slots.left.length > 0">
                 <template v-if="fixedLeft">
-                    <stick :spec-selector="fixedFireSelector">
+                    <stick :spec-selector="fixedFireSelector" :offset-top="fixedOffsetTop" :offset-bottom="fixedOffsetBottom">
                         <slot name="left"></slot>
                     </stick>
                 </template>
@@ -43,6 +43,13 @@
       },
       fixedFireSelector: {
         type: String
+      },
+      fixedOffsetTop: {
+        type: Number,
+        default: 0
+      },
+      fixedOffsetBottom: {
+        type: Number
       },
       bodyClz: {
         type: String,

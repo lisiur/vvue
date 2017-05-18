@@ -2,6 +2,8 @@
     <div :is="type" :body-clz="bodyClz"
                     :fixed="fixed"
                     :fixed-left="fixedLeft"
+                    :fixed-offset-top="fixedOffsetTop"
+                    :fixed-offset-bottom="fixedOffsetBottom"
                     :fixed-fire-selector="fixedFireSelector">
         <!-- public -->
         <slot></slot>
@@ -53,6 +55,13 @@
       },
       fixedFireSelector: {
         type: String
+      },
+      fixedOffsetTop: {
+        type: Number,
+        default: 0
+      },
+      fixedOffsetBottom: {
+        type: Number
       },
       bodyClz: {
         type: String,
