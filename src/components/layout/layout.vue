@@ -1,5 +1,5 @@
 <template>
-    <div :is="type">
+    <div :is="type" :hidden-scroll="hiddenScroll" :body-clz="bodyClz">
         <!-- public -->
         <slot></slot>
 
@@ -39,6 +39,14 @@
       type: {
         type: String,
         default: 'holy-grail'
+      },
+      hiddenScroll: {
+        type: Boolean,
+        default: false
+      },
+      bodyClz: {
+        type: String,
+        default: ''
       }
     },
     data: () => ({
@@ -46,5 +54,3 @@
     }),
   }
 </script>
-<style lang="scss">
-</style>
