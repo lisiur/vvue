@@ -45,7 +45,7 @@
     name: 'HolyGrail',
     components: { PrettyScroll },
     props: {
-      hideScroll: {
+      hiddenScroll: {
         type: Boolean,
         default: false
       },
