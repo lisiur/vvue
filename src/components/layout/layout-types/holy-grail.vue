@@ -4,7 +4,7 @@
             <slot name="header"></slot>
         </div>
         <div :class="[`${prefixClz}-body`, bodyClz]">
-            <div ref="leftWrapper" :class="[`${prefixClz}-left`]" :style="{'flex-basis': leftWidth + 'px'}" v-if="$slots.left.length > 0">
+            <div ref="leftWrapper" :class="[`${prefixClz}-left`]" :style="{'flex-basis': leftWidth}" v-if="$slots.left.length > 0">
                 <template v-if="fixedLeft">
                     <stick :spec-selector="fixedFireSelector">
                         <slot name="left"></slot>
@@ -51,10 +51,12 @@
     },
     data: () => ({
       prefixClz: prefixClz,
-      leftWidth: 0
+      leftWidth: 'auto'
     }),
     mounted() {
-      this.leftWidth = this.$refs.leftWrapper.firstChild.offsetWidth
+      if (this.$refs.leftWrapper) { // 因为leftWrapper有判断条件，所以这个ref可能取不到
+        this.leftWidth = this.$refs.leftWrapper.firstChild.offsetWidth + 'px'
+      }
     },
   }
 </script>
