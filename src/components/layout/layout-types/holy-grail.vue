@@ -47,7 +47,7 @@
     props: {
       hideScroll: {
         type: Boolean,
-        default: true
+        default: false
       },
       bodyClz: {
         type: String,
