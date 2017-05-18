@@ -1,8 +1,14 @@
 $prefix: 'vvue-layout-type-holy-grail';
 .#{$prefix} {
   display: flex;
-  height: 100vh;
+  min-height: 100%;
   flex-direction: column;
+  &.#{$prefix}-fixed {
+    height: 100%;
+    .#{$prefix}-body {
+      overflow: scroll;
+    }
+  }
   .#{$prefix}-body{
     flex: 1;
     display: flex;
@@ -14,3 +20,4 @@ $prefix: 'vvue-layout-type-holy-grail';
     }
   }
 }
+

@@ -1,136 +1,155 @@
 <template>
-      <v-layout id="app">
-          <header slot="header">
-              header
-          </header>
-          <nav slot="left">
-              <ul>
-                  <li><a href="#layout">layout</a></li>
-                  <li><a href="#shake">shake</a></li>
-                  <li><a href="#spin">spin</a></li>
-                  <li><a href="#slider">slider</a></li>
-                  <li><a href="#sync">sync</a></li>
-                  <li><a href="#pretty-scroll">pretty-scroll</a></li>
-              </ul>
-          </nav>
-          <aside slot="right">
-          </aside>
-          <footer slot="footer">
-              &copy; LisiurDay
-          </footer>
-          <v-pretty-scroll class="main">
-              <div id="layout">
-                  <v-layout type="add-on">
-                      <button slot="pre">pre</button>
-                      <input type="text">
-                      <button slot="after">after</button>
-                  </v-layout>
-              </div>
-              <div id="shake">
-                  <h1>shake</h1>
-                  <v-shake ref="shake" :customConfig="shakeConfig" :times="5" @on-done="shakeDone">
-                      <v-spin size="40"></v-spin>
-                  </v-shake>
-                  <button @click="shake">shake it</button>
-              </div>
-              <div id="spin">
-                  <h1>spin</h1>
-                  <v-spin size="40"></v-spin>
-              </div>
-              <div id="slider">
-                  <h1>slider</h1>
-                  <v-slider width="650px" height="400px" auto trigger="hover" :source="sliderSource"> </v-slider>
-              </div>
-              <div id="sync">
-                  <h1>sync</h1>
-                  <v-sync class="sync" ref="sync" :promise="promise">
-                      <div slot="loading">
-                          loading
-                      </div>
-                      <div slot="done">
-                          {{ response }}
-                      </div>
-                      <div slot="fail">
-                          {{ response }}
-                      </div>
-                  </v-sync>
-                  <button @click="sync">sync</button>
-              </div>
-              <div id="pretty-scroll">
-                  <h1>pretty-scroll</h1>
-                  <v-pretty-scroll class="pretty-scroll" width="30px" height="100px">
-                      <ul>
-                          <li>test</li>
-                          <li>test</li>
-                          <li>test</li>
-                          <li>test</li>
-                          <li>test</li>
-                          <li>test</li>
-                          <li>test</li>
-                          <li>test</li>
-                          <li>test</li>
-                          <li>test</li>
-                      </ul>
-                  </v-pretty-scroll>
-              </div>
-          </v-pretty-scroll>
-      </v-layout>
+    <div id="app">
+        <v-layout type="holy-grail" fixed-left fixed-fire-selector="#app">
+            <header class="app-header" slot="header">
+                header
+            </header>
+            <nav class="app-side-nav" slot="left">
+                <ul>
+                    <li><a href="#layout">layout</a></li>
+                    <li><a href="#shake">shake</a></li>
+                    <li><a href="#spin">spin</a></li>
+                    <li><a href="#slider">slider</a></li>
+                    <li><a href="#sync">sync</a></li>
+                    <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                </ul>
+            </nav>
+            <footer class="app-footer" slot="footer">
+                &copy; LisiurDay
+            </footer>
+            <div class="app-main">
+                <div id="layout">
+                    <v-layout type="add-on">
+                        <button slot="pre">pre</button>
+                        <input type="text">
+                        <button slot="after">after</button>
+                    </v-layout>
+                </div>
+                <div id="shake">
+                    <h1>shake</h1>
+                    <v-shake ref="shake" :customConfig="shakeConfig" :times="5" @on-done="shakeDone">
+                        <v-spin size="40"></v-spin>
+                    </v-shake>
+                    <button @click="shake">shake it</button>
+                </div>
+                <div id="spin">
+                    <h1>spin</h1>
+                    <v-spin size="40"></v-spin>
+                </div>
+                <div id="slider">
+                    <h1>slider</h1>
+                    <v-slider width="650px" height="400px" auto trigger="hover" :source="sliderSource"></v-slider>
+                </div>
+                <div id="sync">
+                    <h1>sync</h1>
+                    <v-sync class="sync" ref="sync" :promise="promise">
+                        <div slot="loading">
+                            loading
+                        </div>
+                        <div slot="done">
+                            {{ response }}
+                        </div>
+                        <div slot="fail">
+                            {{ response }}
+                        </div>
+                    </v-sync>
+                    <button @click="sync">sync</button>
+                </div>
+                <div id="pretty-scroll">
+                    <h1>pretty-scroll</h1>
+                    <v-pretty-scroll class="pretty-scroll" width="30px" height="100px">
+                        <ul>
+                            <li>test</li>
+                            <li>test</li>
+                            <li>test</li>
+                            <li>test</li>
+                            <li>test</li>
+                            <li>test</li>
+                            <li>test</li>
+                            <li>test</li>
+                            <li>test</li>
+                            <li>test</li>
+                        </ul>
+                    </v-pretty-scroll>
+                </div>
+            </div>
+        </v-layout>
+    </div>
 </template>
 
 <script>
-    import images from '@/assets'
-    export default {
-      data: () => ({
-        sliderSource: images,
-        response: null,
-        promise: null,
-        shakeConfig: []
-      }),
-      methods: {
-        getData(url) {
-          this.promise = new Promise((resolve, reject) => {
-            setTimeout(() => {
-              resolve(url)
-            }, 200)
-          })
-          this.promise.then(res => this.response = res, res => this.response = res)
-        },
-        sync() {
-          this.getData('next')
-        },
-        shake() {
-          this.$refs.shake.shake({times: 5})
-        },
-        shakeDone() {
-          console.log('done')
-        }
+  import images from '@/assets'
+  export default {
+    data: () => ({
+      sliderSource: images,
+      response: null,
+      promise: null,
+      shakeConfig: []
+    }),
+    methods: {
+      getData(url) {
+        this.promise = new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve(url)
+          }, 200)
+        })
+        this.promise.then(res => this.response = res, res => this.response = res)
       },
-      created() {
-        this.getData('first')
-        let shakeConfig = []
-        let interval = 5
-        for (let i = 1; i <= 20; ++i) {
-          shakeConfig.push([i, Math.sqrt(100-(i-10)*(i-10)), interval])
-        }
-        for (let i= 19; i >= 0; --i) {
-          shakeConfig.push([i, -Math.sqrt(100-(i-10)*(i-10)), interval])
-        }
-        this.shakeConfig = shakeConfig
+      sync() {
+        this.getData('next')
+      },
+      shake() {
+        this.$refs.shake.shake({times: 5})
+      },
+      shakeDone() {
+        console.log('done')
       }
+    },
+    created() {
+      this.getData('first')
+      let shakeConfig = []
+      let interval = 5
+      for (let i = 1; i <= 20; ++i) {
+        shakeConfig.push([i, Math.sqrt(100 - (i - 10) * (i - 10)), interval])
+      }
+      for (let i = 19; i >= 0; --i) {
+        shakeConfig.push([i, -Math.sqrt(100 - (i - 10) * (i - 10)), interval])
+      }
+      this.shakeConfig = shakeConfig
     }
+  }
 </script>
 
 <style lang="scss">
+    #app {
+        box-sizing: border-box;
+        width: 100%;
+        height: 100vh;
+        overflow: scroll;
+        .app-header, .app-footer {
+            background: red;
+        }
+        .app-side-nav {
+            width: 200px;
+            background: yellow;
+        }
+        .app-main {
+            width: calc(100% - 200px);
+            background: blue;
+        }
+    }
     .main {
         h1 {
             font-size: 1.6rem;
         }
     }
+
     .sync {
         width: 300px;
         min-height: 200px;
         background: red;
     }
+
     .pretty-scroll {
         background: royalblue;
     }

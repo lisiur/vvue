@@ -15,6 +15,5 @@
     .#{$prefix} {
         display: flex;
         flex-flow: row wrap;
-
     }
 </style>

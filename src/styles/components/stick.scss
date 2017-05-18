@@ -1,0 +1,5 @@
+$prefix: vvue-stick;
+.#{$prefix} {
+  position: fixed;
+  z-index: 99;
+}

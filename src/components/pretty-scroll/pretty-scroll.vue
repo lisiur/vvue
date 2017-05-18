@@ -1,9 +1,7 @@
 <template>
     <div :class="[prefixClz, `${prefixClz}-outer-wrapper`]" :style="{width: width, height: height}">
         <div ref="inner" :class="[`${prefixClz}-inner-wrapper`]" :style="{width: innerWidth, height: innerHeight}">
-            <div style="height: calc(100% - 20px)">
-                <slot></slot>
-            </div>
+            <slot></slot>
         </div>
     </div>
 </template>

@@ -1,5 +1,8 @@
 <template>
-    <div :is="type" :hidden-scroll="hiddenScroll" :body-clz="bodyClz">
+    <div :is="type" :body-clz="bodyClz"
+                    :fixed="fixed"
+                    :fixed-left="fixedLeft"
+                    :fixed-fire-selector="fixedFireSelector">
         <!-- public -->
         <slot></slot>
 
@@ -40,9 +43,16 @@
         type: String,
         default: 'holy-grail'
       },
-      hiddenScroll: {
+      fixed: {
         type: Boolean,
         default: false
+      },
+      fixedLeft: {
+        type: Boolean,
+        default: false
+      },
+      fixedFireSelector: {
+        type: String
       },
       bodyClz: {
         type: String,

@@ -1,53 +1,48 @@
 <template>
-    <div :class="[prefixClz]">
-        <header :class="[`${prefixClz}-header`]">
+    <div :class="[prefixClz, fixed ? `${prefixClz}-fixed` : '']">
+        <div :class="[`${prefixClz}-header`]" v-if="$slots.header.length > 0">
             <slot name="header"></slot>
-        </header>
-        <div :class="[`${prefixClz}-body`, bodyClz]">
-            <template v-if="hideScroll">
-                <pretty-scroll>
-                    <nav :class="[`${prefixClz}-left`]">
-                        <slot name="left"></slot>
-                    </nav>
-                </pretty-scroll>
-                <pretty-scroll>
-                    <main :class="[`${prefixClz}-main`]">
-                        <slot></slot>
-                    </main>
-                </pretty-scroll>
-                <pretty-scroll>
-                    <aside :class="[`${prefixClz}-right`]">
-                        <slot name="right"></slot>
-                    </aside>
-                </pretty-scroll>
-            </template>
-            <template v-else>
-                <nav :class="[`${prefixClz}-left`]">
-                    <slot name="left"></slot>
-                </nav>
-                <main :class="[`${prefixClz}-main`]">
-                    <slot></slot>
-                </main>
-                <aside :class="[`${prefixClz}-right`]">
-                    <slot name="right"></slot>
-                </aside>
-            </template>
         </div>
-        <footer :class="[`${prefixClz}-footer`]">
+        <div :class="[`${prefixClz}-body`, bodyClz]">
+            <div ref="leftWrapper" :class="[`${prefixClz}-left`]" :style="{'flex-basis': leftWidth + 'px'}" v-if="$slots.left.length > 0">
+                <template v-if="fixedLeft">
+                    <stick :spec-selector="fixedFireSelector">
+                        <slot name="left"></slot>
+                    </stick>
+                </template>
+                <template v-else>
+                    <slot name="left"></slot>
+                </template>
+            </div>
+            <div :class="[`${prefixClz}-main`]" v-if="$slots.default.length > 0">
+                <slot></slot>
+            </div>
+            <div :class="[`${prefixClz}-right`]" v-if="$slots.right.length > 0">
+                <slot name="right"></slot>
+            </div>
+        </div>
+        <div :class="[`${prefixClz}-footer`]" v-if="$slots.footer.length > 0">
             <slot name="footer"></slot>
-        </footer>
+        </div>
     </div>
 </template>
 <script>
-  import PrettyScroll from '../../pretty-scroll'
+  import Stick from '../../stick'
   const prefixClz = 'vvue-layout-type-holy-grail'
   export default {
     name: 'HolyGrail',
-    components: { PrettyScroll },
+    components: { Stick },
     props: {
-      hiddenScroll: {
+      fixed: {
         type: Boolean,
         default: false
+      },
+      fixedLeft: {
+        type: Boolean,
+        default: false
+      },
+      fixedFireSelector: {
+        type: String
       },
       bodyClz: {
         type: String,
@@ -55,7 +50,11 @@
       }
     },
     data: () => ({
-      prefixClz: prefixClz
+      prefixClz: prefixClz,
+      leftWidth: 0
     }),
+    mounted() {
+      this.leftWidth = this.$refs.leftWrapper.firstChild.offsetWidth
+    },
   }
 </script>
