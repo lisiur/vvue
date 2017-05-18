@@ -1,15 +1,17 @@
 <template>
     <div :class="[prefixClz, `${prefixClz}-outer-wrapper`]" :style="{width: width, height: height}">
         <div ref="inner" :class="[`${prefixClz}-inner-wrapper`]" :style="{width: innerWidth, height: innerHeight}">
-            <slot></slot>
+            <div style="height: calc(100% - 20px)">
+                <slot></slot>
+            </div>
         </div>
     </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
   const prefixClz = 'vvue-pretty-scroll'
   export default {
-    name: 'prettyScroll',
+    name: 'PrettyScroll',
     data: () => ({
       prefixClz: prefixClz,
     }),

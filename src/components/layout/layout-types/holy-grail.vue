@@ -3,7 +3,7 @@
         <header :class="[`${prefixClz}-header`]">
             <slot name="header"></slot>
         </header>
-        <div :class="[`${prefixClz}-body`]">
+        <div :class="[`${prefixClz}-body`, bodyClz]">
             <template v-if="hideScroll">
                 <pretty-scroll>
                     <nav :class="[`${prefixClz}-left`]">
@@ -43,11 +43,15 @@
   const prefixClz = 'vvue-layout-type-holy-grail'
   export default {
     name: 'HolyGrail',
-    components: [PrettyScroll],
+    components: { PrettyScroll },
     props: {
       hideScroll: {
         type: Boolean,
-        default: false
+        default: true
+      },
+      bodyClz: {
+        type: String,
+        default: ''
       }
     },
     data: () => ({
