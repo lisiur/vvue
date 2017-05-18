@@ -4,15 +4,8 @@
             <slot name="header"></slot>
         </div>
         <div :class="[`${prefixClz}-body`, bodyClz]">
-            <div ref="leftWrapper" :class="[`${prefixClz}-left`]" :style="{'flex-basis': leftWidth}" v-if="$slots.left.length > 0">
-                <template v-if="fixedLeft">
-                    <stick :spec-selector="fixedFireSelector" :offset-top="fixedOffsetTop" :offset-bottom="fixedOffsetBottom">
-                        <slot name="left"></slot>
-                    </stick>
-                </template>
-                <template v-else>
-                    <slot name="left"></slot>
-                </template>
+            <div ref="leftWrapper" :class="[`${prefixClz}-left`]" v-if="$slots.left.length > 0">
+                <slot name="left"></slot>
             </div>
             <div :class="[`${prefixClz}-main`]" v-if="$slots.default.length > 0">
                 <slot></slot>
@@ -27,29 +20,13 @@
     </div>
 </template>
 <script>
-  import Stick from '../../stick'
   const prefixClz = 'vvue-layout-type-holy-grail'
   export default {
     name: 'HolyGrail',
-    components: { Stick },
     props: {
       fixed: {
         type: Boolean,
         default: false
-      },
-      fixedLeft: {
-        type: Boolean,
-        default: false
-      },
-      fixedFireSelector: {
-        type: String
-      },
-      fixedOffsetTop: {
-        type: Number,
-        default: 0
-      },
-      fixedOffsetBottom: {
-        type: Number
       },
       bodyClz: {
         type: String,
@@ -58,12 +35,6 @@
     },
     data: () => ({
       prefixClz: prefixClz,
-      leftWidth: 'auto'
-    }),
-    mounted() {
-      if (this.$refs.leftWrapper) { // 因为leftWrapper有判断条件，所以这个ref可能取不到
-        this.leftWidth = this.$refs.leftWrapper.firstChild.offsetWidth + 'px'
-      }
-    },
+    })
   }
 </script>

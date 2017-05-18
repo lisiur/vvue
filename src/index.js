@@ -8,6 +8,7 @@ import vPrettyScroll from './components/pretty-scroll'
 import vSpin from './components/spin'
 import vShake from './components/shake'
 import vLayout from './components/layout'
+import vStick from './components/stick'
 
 const vvue = {
   vSlider,
@@ -18,7 +19,8 @@ const vvue = {
   vSpinTypeDefault: vSpin.Default,
   vSpinTypeCircle: vSpin.Circle,
   vShake,
-  vLayout
+  vLayout,
+  vStick
 }
 const install = function (Vue, opts = {}) {
   Object.keys(vvue).forEach((key) => {

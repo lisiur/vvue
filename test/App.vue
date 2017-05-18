@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <v-layout type="holy-grail" fixed-left fixed-fire-selector="#app">
+        <v-layout type="holy-grail">
             <header class="app-header" slot="header">
                 header
             </header>
