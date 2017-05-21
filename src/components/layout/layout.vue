@@ -1,5 +1,5 @@
 <template>
-    <div :is="type" :body-clz="bodyClz" :fixed="fixed">
+    <div ref="layout" :is="type" :body-clz="bodyClz" :fixed="fixed">
         <!-- public -->
         <slot></slot>
 
@@ -52,5 +52,10 @@
     data: () => ({
       prefixClz: prefixClz,
     }),
+    methods: {
+      toggleLeft(type) {
+        this.$refs.layout.toggleLeft(type)
+      }
+    }
   }
 </script>

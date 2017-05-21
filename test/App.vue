@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <v-layout type="holy-grail" fixed>
+        <v-layout ref="layout" type="holy-grail" fixed>
             <header class="app-header" slot="header">
                 header
             </header>
@@ -89,9 +89,9 @@
             <div class="app-main">
                 <div id="layout">
                     <v-layout type="add-on">
-                        <button slot="pre">pre</button>
+                        <button slot="pre" @click="hideNav">pre</button>
                         <input type="text">
-                        <button slot="after">after</button>
+                        <button slot="after" @click="showNav">after</button>
                     </v-layout>
                 </div>
                 <div id="shake">
@@ -148,27 +148,6 @@
 
 <script>
   import images from '@/assets'
-  function getScroll(target, top) {
-    const prop = top ? 'pageYOffset' : 'pageXOffset';
-    const method = top ? 'scrollTop' : 'scrollLeft';
-    let ret = target[prop];
-    if (typeof ret !== 'number') {
-      ret = window.document.documentElement[method];
-    }
-    return ret;
-  }
-  function getOffset(element) {
-    const rect = element.getBoundingClientRect();
-    const scrollTop = getScroll(window, true);
-    const scrollLeft = getScroll(window);
-    const docEl = window.document.body;
-    const clientTop = docEl.clientTop || 0;
-    const clientLeft = docEl.clientLeft || 0;
-    return {
-      top: rect.top + scrollTop - clientTop,
-      left: rect.left + scrollLeft - clientLeft
-    };
-  }
   export default {
     data: () => ({
       sliderSource: images,
@@ -195,6 +174,12 @@
       shakeDone() {
         console.log('done')
       },
+      hideNav() {
+        this.$refs.layout.toggleLeft('hidden')
+      },
+      showNav() {
+        this.$refs.layout.toggleLeft('shown')
+      }
     },
     created() {
       this.getData('first')

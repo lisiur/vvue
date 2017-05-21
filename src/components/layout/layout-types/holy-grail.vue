@@ -84,9 +84,14 @@
         leftSlot.style.height = '100%'
         leftStick.style.width = leftSlot.offsetWidth + 'px'
       },
-      fixLeft() {
-        if (this.fixed) {
-          this._handleScroll()
+      toggleLeft(type) {
+        const leftStick = document.querySelector(`.${prefixClz}-left`)
+        if (type === 'hidden') {
+          leftStick.style.position = 'absolute'
+          leftStick.style.left = -leftStick.offsetWidth + 'px'
+        } else {
+          leftStick.style.position = 'inherit'
+          leftStick.style.left = 0
         }
       }
     },
