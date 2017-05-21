@@ -79,7 +79,7 @@
         if (headerBelowTop > 0 && footerBelowBottom < 0) { // both header and footer
           leftStick.style.height = `calc(100vh + ${footerBelowBottom}px) - ${headerBelowTop}px`
         }
-        absEle.style.height = leftStick.offsetHeight // absEle 会脱离文档流 所以不能使用100%设置高度
+        absEle.style.height = leftStick.style.height // absEle 会脱离文档流 所以不能使用100%设置高度
       }
     },
     mounted() {
@@ -88,6 +88,8 @@
         const leftSlot = document.querySelector(`.${prefixClz}-left > div`).firstChild
         leftSlot.style.height = '100%'
         leftStick.style.width = leftSlot.offsetWidth + 'px'
+
+        this.handleScroll()
         window.addEventListener('scroll', this.handleScroll, false)
       }
     }
