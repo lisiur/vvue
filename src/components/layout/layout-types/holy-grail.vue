@@ -1,33 +1,33 @@
 <template>
     <div :class="[prefixClz, fixed ? `${prefixClz}-fixed` : '']">
-        <div :class="[`${prefixClz}-header`]" v-if="hasSlot('header')">
+        <div :class="[`${prefixClz}-header`]" v-if="_hasSlot('header')">
             <slot name="header"></slot>
         </div>
         <div :class="[`${prefixClz}-body`, bodyClz]">
             <template v-if="fixed">
-                <stick :class="[`${prefixClz}-left`]" v-if="hasSlot('left')">
+                <stick :class="[`${prefixClz}-left`]" v-if="_hasSlot('left')">
                     <slot name="left"></slot>
                 </stick>
-                <div :class="[`${prefixClz}-main`]" v-if="hasSlot('default')">
+                <div :class="[`${prefixClz}-main`]" v-if="_hasSlot('default')">
                     <slot></slot>
                 </div>
-                <div :class="[`${prefixClz}-right`]" v-if="hasSlot('right')">
+                <div :class="[`${prefixClz}-right`]" v-if="_hasSlot('right')">
                     <slot name="right"></slot>
                 </div>
             </template>
             <template v-else>
-                <div :class="[`${prefixClz}-left`]" v-if="hasSlot('left')">
+                <div :class="[`${prefixClz}-left`]" v-if="_hasSlot('left')">
                     <slot name="left"></slot>
                 </div>
-                <div :class="[`${prefixClz}-main`]" v-if="hasSlot('default')">
+                <div :class="[`${prefixClz}-main`]" v-if="_hasSlot('default')">
                     <slot></slot>
                 </div>
-                <div :class="[`${prefixClz}-right`]" v-if="hasSlot('right')">
+                <div :class="[`${prefixClz}-right`]" v-if="_hasSlot('right')">
                     <slot name="right"></slot>
                 </div>
             </template>
         </div>
-        <div :class="[`${prefixClz}-footer`]" v-if="hasSlot('footer')">
+        <div :class="[`${prefixClz}-footer`]" v-if="_hasSlot('footer')">
             <slot name="footer"></slot>
         </div>
     </div>
@@ -53,10 +53,10 @@
       prefixClz: prefixClz,
     }),
     methods: {
-      hasSlot(name) {
+      _hasSlot(name) {
         return this.$slots[name].length > 0
       },
-      handleScroll() {
+      _handleScroll() {
         const header = document.querySelector(`.${prefixClz}-header`)
         const footer = document.querySelector(`.${prefixClz}-footer`)
         const leftStick = document.querySelector(`.${prefixClz}-left`)
@@ -85,16 +85,15 @@
         leftStick.style.width = leftSlot.offsetWidth + 'px'
       },
       fixLeft() {
-        const leftStick = document.querySelector(`.${prefixClz}-left`)
-        const leftSlot = document.querySelector(`.${prefixClz}-left > div`).firstChild
-        leftSlot.style.height = '100%'
-        leftStick.style.width = leftSlot.offsetWidth + 'px'
+        if (this.fixed) {
+          this._handleScroll()
+        }
       }
     },
     mounted() {
       if (this.fixed) {
-        this.handleScroll()
-        window.addEventListener('scroll', this.handleScroll, false)
+        this._handleScroll()
+        window.addEventListener('scroll', this._handleScroll, false)
       }
     }
   }
