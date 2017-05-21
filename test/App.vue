@@ -1,18 +1,87 @@
 <template>
     <div id="app">
-        <v-layout type="holy-grail">
+        <v-layout type="holy-grail" fixed>
             <header class="app-header" slot="header">
                 header
             </header>
             <nav class="app-side-nav" slot="left">
-                <ul>
-                    <li><a href="#layout">layout</a></li>
-                    <li><a href="#shake">shake</a></li>
-                    <li><a href="#spin">spin</a></li>
-                    <li><a href="#slider">slider</a></li>
-                    <li><a href="#sync">sync</a></li>
-                    <li><a href="#pretty-scroll">pretty-scroll</a></li>
-                </ul>
+                <v-pretty-scroll>
+                        <ul>
+                            <li><a href="#layout">layout</a></li>
+                            <li><a href="#shake">shake</a></li>
+                            <li><a href="#spin">spin</a></li>
+                            <li><a href="#slider">slider</a></li>
+                            <li><a href="#sync">sync</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                            <li><a href="#pretty-scroll">pretty-scroll</a></li>
+                        </ul>
+                    </v-pretty-scroll>
             </nav>
             <footer class="app-footer" slot="footer">
                 &copy; LisiurDay
@@ -79,12 +148,34 @@
 
 <script>
   import images from '@/assets'
+  function getScroll(target, top) {
+    const prop = top ? 'pageYOffset' : 'pageXOffset';
+    const method = top ? 'scrollTop' : 'scrollLeft';
+    let ret = target[prop];
+    if (typeof ret !== 'number') {
+      ret = window.document.documentElement[method];
+    }
+    return ret;
+  }
+  function getOffset(element) {
+    const rect = element.getBoundingClientRect();
+    const scrollTop = getScroll(window, true);
+    const scrollLeft = getScroll(window);
+    const docEl = window.document.body;
+    const clientTop = docEl.clientTop || 0;
+    const clientLeft = docEl.clientLeft || 0;
+    return {
+      top: rect.top + scrollTop - clientTop,
+      left: rect.left + scrollLeft - clientLeft
+    };
+  }
   export default {
     data: () => ({
       sliderSource: images,
       response: null,
       promise: null,
-      shakeConfig: []
+      shakeConfig: [],
+      navMaxHeight: 0
     }),
     methods: {
       getData(url) {
@@ -103,7 +194,7 @@
       },
       shakeDone() {
         console.log('done')
-      }
+      },
     },
     created() {
       this.getData('first')
@@ -116,25 +207,24 @@
         shakeConfig.push([i, -Math.sqrt(100 - (i - 10) * (i - 10)), interval])
       }
       this.shakeConfig = shakeConfig
-    }
+    },
   }
 </script>
 
 <style lang="scss">
     #app {
-        box-sizing: border-box;
         width: 100%;
-        height: 100vh;
-        overflow: scroll;
+        /*height: 100vh; // fixed;*/
         .app-header, .app-footer {
             background: red;
         }
         .app-side-nav {
             width: 200px;
-            background: yellow;
+            ul {
+                background: yellow;
+            }
         }
         .app-main {
-            width: calc(100% - 200px);
             background: blue;
         }
     }

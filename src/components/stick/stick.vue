@@ -1,6 +1,8 @@
 <template>
-    <div :class="classes" :style="styles">
-        <slot></slot>
+    <div style="height: 100%;">
+        <div :class="classes" :style="styles">
+            <slot></slot>
+        </div>
     </div>
 </template>
 
@@ -54,11 +56,7 @@
         return type;
       },
       classes () {
-        return [
-          {
-            [`${prefixClz}`]: this.stick
-          }
-        ];
+        return this.stick ? [`${prefixClz}`] : [`${prefixClz}-none`]
       }
     },
     mounted () {
@@ -113,3 +111,9 @@
     }
   };
 </script>
+<style lang="scss">
+    $prefix: 'vvue-stick';
+    .#{$prefix}-none {
+        height: 100%;
+    }
+</style>

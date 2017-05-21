@@ -3,18 +3,11 @@ $prefix: 'vvue-layout-type-holy-grail';
   display: flex;
   min-height: 100%;
   flex-direction: column;
-  &.#{$prefix}-fixed {
-    height: 100%;
-    .#{$prefix}-body {
-      overflow: scroll;
-    }
-  }
   .#{$prefix}-body{
     flex: 1;
     display: flex;
     .#{$prefix}-main{
       flex: 1;
-      overflow-x: scroll;
     }
     .#{$prefix}-left, .#{$prefix}-right {
       flex: 0 0 auto;
