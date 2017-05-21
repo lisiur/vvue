@@ -45,7 +45,7 @@
         default: false
       },
       offsetTop: {
-        type: Boolean,
+        type: Number,
         default: 0
       },
       bodyClz: {

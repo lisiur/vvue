@@ -45,7 +45,7 @@
         default: false
       },
       offsetTop: {
-        type: Boolean,
+        type: Number,
         default: 0
       },
       bodyClz: {
@@ -73,16 +73,16 @@
         const footerBelowBottom = getOffset(footer).top - (windowHeight + scrollTop)
 
         if (headerBelowTop > 0 && footerBelowBottom > 0) { // only header
-          leftStick.style.height = `calc(100vh - ${headerBelowTop}px)`
+          leftStick.style.height = `calc(100vh - ${offsetTop} - ${headerBelowTop}px)`
         }
         if (headerBelowTop < 0 && footerBelowBottom > 0) { // neither header nor footer
-          leftStick.style.height = '100vh'
+          leftStick.style.height = `calc(100vh - ${offsetTop}px`
         }
         if (headerBelowTop < 0 && footerBelowBottom < 0) { // only footer
-          leftStick.style.height = `calc(100vh + ${footerBelowBottom}px)`
+          leftStick.style.height = `calc(100vh - ${offsetTop} + ${footerBelowBottom}px)`
         }
         if (headerBelowTop > 0 && footerBelowBottom < 0) { // both header and footer
-          leftStick.style.height = `calc(100vh + ${footerBelowBottom}px) - ${headerBelowTop}px`
+          leftStick.style.height = `calc(100vh - ${offsetTop} + ${footerBelowBottom}px) - ${headerBelowTop}px`
         }
         absEle.style.height = leftStick.style.height // absEle 会脱离文档流 所以不能使用100%设置高度
         leftSlot.style.height = '100%'
