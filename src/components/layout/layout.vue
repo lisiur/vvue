@@ -1,5 +1,5 @@
 <template>
-    <div ref="layout" :is="type" :body-clz="bodyClz" :fixed="fixed">
+    <div ref="layout" :is="type" :body-clz="bodyClz" :offset-top="offsetTop" :fixed="fixed">
         <!-- public -->
         <slot></slot>
 
@@ -43,6 +43,10 @@
       fixed: {
         type: Boolean,
         default: false
+      },
+      offsetTop: {
+        type: Boolean,
+        default: 0
       },
       bodyClz: {
         type: String,

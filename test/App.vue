@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <v-layout ref="layout" type="holy-grail" fixed>
+        <v-layout ref="layout" type="holy-grail" :offset-top="40" fixed>
             <header class="app-header" slot="header">
                 header
             </header>

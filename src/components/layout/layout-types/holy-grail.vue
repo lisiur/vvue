@@ -5,7 +5,7 @@
         </div>
         <div :class="[`${prefixClz}-body`, bodyClz]">
             <template v-if="fixed">
-                <stick :class="[`${prefixClz}-left`]" v-if="_hasSlot('left')">
+                <stick :offsetTop="offsetTop" :class="[`${prefixClz}-left`]" v-if="_hasSlot('left')">
                     <slot name="left"></slot>
                 </stick>
                 <div :class="[`${prefixClz}-main`]" v-if="_hasSlot('default')">
@@ -43,6 +43,10 @@
       fixed: {
         type: Boolean,
         default: false
+      },
+      offsetTop: {
+        type: Boolean,
+        default: 0
       },
       bodyClz: {
         type: String,
