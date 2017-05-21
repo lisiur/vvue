@@ -79,7 +79,7 @@
         if (headerBelowTop > 0 && footerBelowBottom < 0) { // both header and footer
           leftStick.style.height = `calc(100vh + ${footerBelowBottom}px) - ${headerBelowTop}px`
         }
-        absEle.style.height = leftStick.style.maxHeight // absEle 会脱离文档流 所以不能使用100%设置高度
+        absEle.style.height = leftStick.offsetHeight // absEle 会脱离文档流 所以不能使用100%设置高度
       }
     },
     mounted() {
