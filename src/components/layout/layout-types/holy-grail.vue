@@ -94,7 +94,7 @@
           }
         }
         absEle.style.height = leftStick.style.height // absEle 会脱离文档流 所以不能使用100%设置高度
-        leftSlot.style.height = '100%'
+        leftSlot.style.minHeight = '100%'
         leftStick.style.width = leftSlot.offsetWidth + 'px'
       },
       _leftFixToggle(fixed) {
