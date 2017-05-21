@@ -60,8 +60,8 @@
         const header = document.querySelector(`.${prefixClz}-header`)
         const footer = document.querySelector(`.${prefixClz}-footer`)
         const leftStick = document.querySelector(`.${prefixClz}-left`)
-        const leftSlot = document.querySelector(`.${prefixClz}-left > div`).firstChild
         const absEle = document.querySelector(`.${prefixClz}-left > div`)
+        const leftSlot = document.querySelector(`.${prefixClz}-left > div`).firstChild
         const scrollTop = getScroll(window, true);
         const windowHeight = window.innerHeight
 
@@ -81,6 +81,12 @@
           leftStick.style.height = `calc(100vh + ${footerBelowBottom}px) - ${headerBelowTop}px`
         }
         absEle.style.height = leftStick.style.height // absEle 会脱离文档流 所以不能使用100%设置高度
+        leftSlot.style.height = '100%'
+        leftStick.style.width = leftSlot.offsetWidth + 'px'
+      },
+      fixLeft() {
+        const leftStick = document.querySelector(`.${prefixClz}-left`)
+        const leftSlot = document.querySelector(`.${prefixClz}-left > div`).firstChild
         leftSlot.style.height = '100%'
         leftStick.style.width = leftSlot.offsetWidth + 'px'
       }
