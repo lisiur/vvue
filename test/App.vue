@@ -108,7 +108,10 @@
                 </div>
                 <div id="slider">
                     <h1>slider</h1>
-                    <v-slider width="650px" height="400px" auto trigger="hover" :source="sliderSource"></v-slider>
+                    <v-slider width="650px" height="400px" auto trigger="hover" :source="[]">
+                        <v-slider-item><img :src="sliderSource[0]" alt=""></v-slider-item>
+                        <v-slider-item><img :src="sliderSource[1]" alt=""></v-slider-item>
+                    </v-slider>
                 </div>
                 <div id="sync">
                     <h1>sync</h1>

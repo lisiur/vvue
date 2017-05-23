@@ -1,7 +1,7 @@
 <template>
     <div :class="[prefixClz]">
         <div :class="[`${prefixClz}-wrapper`]" :style="{width: width, height: height}">
-            <ul ref="sourceList" :class="[`${prefixClz}-list`]">
+            <ul ref="sourceList" :class="[`${prefixClz}-list`]" @mouseenter.stop="pause=true" @mouseout.stop="pause=false">
                 <template v-if="source && source.length !== 0">
                     <li :class="[`${prefixClz}-item`]" v-for="src in source">
                         <img :src="src" alt="image">
@@ -15,8 +15,8 @@
                 <ul :class="[`${prefixClz}-indicator-list`]">
                     <template v-for="id in items.length">
                         <li :class="[`${prefixClz}-indicator-item`, index === (id - 1) ? `${prefixClz}-indicator-active` : '']"
-                            @mouseover="filterTrigger('hover', id - 1)"
-                            @click="filterTrigger('click', id - 1)">
+                            @mouseover.stop="_filterTrigger('hover', id - 1)"
+                            @click="_filterTrigger('click', id - 1)">
                         </li>
                     </template>
                 </ul>
@@ -68,6 +68,7 @@
     data: () => ({
       prefixClz: prefixClz,
       timer: null,
+      pause: false,
       items: [],
       index: 0,
     }),
@@ -88,8 +89,11 @@
       },
     },
     methods: {
-      filterTrigger(trigger, index) {
+      _filterTrigger(trigger, index) {
         if (this.trigger === trigger) {
+          if (this.trigger === 'hover') {
+            this.pause = true
+          }
           this.jump(index)
         }
       },
@@ -111,12 +115,20 @@
         this.items[this.index].style.zIndex = 1
         this.items[this.index].style.opacity= 1
 
-        if (this.auto) {
+        if (this.auto && !this.pause) {
           this.timer = setTimeout(() => {
             this.jump(index+1)
           }, this.speed)
         }
       },
+    },
+    watch: {
+      pause() {
+        clearTimeout(this.timer)
+        if (this.auto && !this.pause) {
+          this.jump(this.index)
+        }
+      }
     },
     mounted() {
       this.items = this.$refs.sourceList.querySelectorAll('li')
