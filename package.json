@@ -1,6 +1,6 @@
 {
   "name": "vvue",
-  "version": "1.7.16",
+  "version": "1.7.17",
   "description": "A Vue.js project",
   "author": "lisiurday <lisiurday@gmail.com>",
   "main": "src/index.js",
