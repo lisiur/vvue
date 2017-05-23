@@ -6,7 +6,7 @@
 <script>
   const _move = (dom, offsetX, offsetY, time) => {
     dom.style.position = 'relative'
-    dom.style.animation = `left ${time}, top ${time}`
+    dom.style.animation = `left ${time / 1000}s, top ${time / 1000}s`
     dom.style.left = offsetX + 'px'
     dom.style.top = -offsetY + 'px'
   }
@@ -85,13 +85,18 @@
       }
     },
     methods: {
+      _recover(interval) {
+        _move(this.wrapper, 0, 0, interval)
+      },
       _shakeSteps(infinity, lastInterval=0) {
         if (this.stepsQueue.length > 0) {
           const currentStep = this.stepsQueue.shift()
           if(infinity) this.stepsQueue.push(currentStep)
           const self = this
+          console.time('interval')
           setTimeout(() => {
-            _move(self.wrapper, currentStep.x, currentStep.y, (currentStep.interval/1000) + 's')
+            console.timeEnd('interval')
+            _move(self.wrapper, currentStep.x, currentStep.y, currentStep.interval)
             self._shakeSteps(infinity, currentStep.interval)
           }, lastInterval)
         } else {
@@ -127,7 +132,11 @@
         }
       },
       stopShake() {
+        const self = this
         this.stepsQueue.length = 0
+        setTimeout(() => { // put in next event loop to avoid pre _move
+          self._recover(self.interval)
+        })
       },
     },
     mounted() {

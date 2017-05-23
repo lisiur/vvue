@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <v-layout ref="layout" type="holy-grail" :offset-top="40" fixed>
+        <v-layout ref="layout" type="holy-grail" fixed>
             <header class="app-header" slot="header">
                 header
             </header>
@@ -96,10 +96,11 @@
                 </div>
                 <div id="shake">
                     <h1>shake</h1>
-                    <v-shake ref="shake" :customConfig="shakeConfig" :times="5" @on-done="shakeDone">
+                    <v-shake ref="shake" @on-done="shakeDone">
                         <v-spin size="40"></v-spin>
                     </v-shake>
                     <button @click="shake">shake it</button>
+                    <button @click="stopShake">stop it</button>
                 </div>
                 <div id="spin">
                     <h1>spin</h1>
@@ -169,10 +170,12 @@
         this.getData('next')
       },
       shake() {
-        this.$refs.shake.shake({times: 5})
+        this.$refs.shake.shake()
+      },
+      stopShake() {
+        this.$refs.shake.stopShake()
       },
       shakeDone() {
-        console.log('done')
       },
       hideNav() {
         this.$refs.layout.toggleLeft('hidden')
